@@ -1,13 +1,8 @@
 
-#body{
-	text-align: left;
-	text-shadow: transparent;
-
-}
-.header{
-	padding: 25px;
-	margin: 45px;
-}
-.body background-image{
-	opacity: 0.1;
+.body {
+	background-image: url('images/background7.jpg');
+	background-size: cover;
+	background-position: center;
+	font-family: fantasy;  
+	
 }
