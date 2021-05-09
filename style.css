@@ -25,7 +25,7 @@ body
 .menu-bar ul li
 {
 	width: 150px;
-	margin: 5px;
+	margin: -5px;
 	padding: 25px;
 
 }
