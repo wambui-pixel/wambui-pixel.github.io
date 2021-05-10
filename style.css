@@ -4,11 +4,7 @@
 	margin: 0;
 	box-sizing: border-box;
 }
-header
-{
-	font-color: white;
-	text-align: center;
-}
+
 body
 {
 	background-image: url('images/main.jpg');
