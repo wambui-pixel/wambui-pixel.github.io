@@ -15,7 +15,7 @@ body
 }
 .menu-bar
 {
-	background-color: black;
+/* 	background-color: black; */
 	text-align: center;
 }
 .menu-bar ul
@@ -34,6 +34,7 @@ body
 .menu-bar ul li a
 {
 	text-decoration: none;
+	background-color: black;
 	color: #fff;
 }
 .active, .menu-bar ul li:hover
