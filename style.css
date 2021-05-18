@@ -69,7 +69,8 @@ body
 	width: 150px;
 	padding: 10px;
 	border-bottom: 1px dotted #fff;
-	background: transparent;
+	/*background:transparent;*/
+	background-color: green;
 	border border-radius: 0;
 	text-align: left;
 }
