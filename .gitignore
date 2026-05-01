@@ -40,4 +40,4 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Legacy HTML files (to be removed in Phase 4)
+.claude
