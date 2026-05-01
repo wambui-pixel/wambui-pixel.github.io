@@ -1,16 +1,4 @@
-"use client";
-
-import { useState, useEffect } from "react";
 import Image from "next/image";
-import Link from "next/link";
-
-const roles = [
-  "Mechatronic Engineer",
-  "IoT Developer",
-  "CAD Designer",
-  "Web Developer",
-  "Embedded Systems",
-];
 
 function GithubIcon({ className }: { className?: string }) {
   return (
@@ -29,22 +17,8 @@ function LinkedinIcon({ className }: { className?: string }) {
 }
 
 export function HeroSection() {
-  const [roleIdx, setRoleIdx] = useState(0);
-  const [visible, setVisible] = useState(true);
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      setVisible(false);
-      setTimeout(() => {
-        setRoleIdx((i) => (i + 1) % roles.length);
-        setVisible(true);
-      }, 300);
-    }, 2800);
-    return () => clearInterval(id);
-  }, []);
-
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-zinc-950 pt-16">
+    <section className="dark relative min-h-screen flex items-center overflow-hidden bg-background pt-16">
 
       {/* ── Photo circle ──────────────────────────────────── */}
       <div className="absolute right-[14%] top-1/2 -translate-y-[48%] pointer-events-none select-none">
@@ -69,27 +43,27 @@ export function HeroSection() {
       </div>
 
       {/* ── Decorative crosses ────────────────────────────── */}
-      <span className="absolute top-28 left-[45%] text-zinc-600 text-2xl font-light select-none">
+      <span className="absolute top-28 left-[45%] text-muted-foreground text-2xl font-light select-none">
         ✦
       </span>
-      <span className="absolute top-24 right-[28%] text-zinc-600 text-xl font-light select-none">
+      <span className="absolute top-24 right-[28%] text-muted-foreground text-xl font-light select-none">
         +
       </span>
-      <span className="absolute bottom-28 right-[38%] text-zinc-600 text-2xl font-light select-none">
+      <span className="absolute bottom-28 right-[38%] text-muted-foreground text-2xl font-light select-none">
         +
       </span>
-      <span className="absolute bottom-40 left-[38%] text-zinc-700 text-sm select-none">
+      <span className="absolute bottom-40 left-[38%] text-muted-foreground text-sm select-none">
         ✦
       </span>
 
       {/* ── Social links — right edge ─────────────────────── */}
       <div className="absolute right-4 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-center gap-4 z-20">
-        <div className="w-px h-16 bg-zinc-700" />
+        <div className="w-px h-16 bg-border" />
         <a
           href="https://github.com/wambui-pixel"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-zinc-500 hover:text-white transition-colors"
+          className="text-muted-foreground hover:text-foreground transition-colors"
           aria-label="GitHub"
         >
           <GithubIcon className="w-4 h-4" />
@@ -98,21 +72,21 @@ export function HeroSection() {
           href="https://www.linkedin.com/in/wambui-kioko/"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-zinc-500 hover:text-white transition-colors"
+          className="text-muted-foreground hover:text-foreground transition-colors"
           aria-label="LinkedIn"
         >
           <LinkedinIcon className="w-4 h-4" />
         </a>
         <a
           href="mailto:kiokowambui015@gmail.com"
-          className="text-zinc-500 hover:text-white transition-colors"
+          className="text-muted-foreground hover:text-foreground transition-colors"
           aria-label="Email"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
           </svg>
         </a>
-        <div className="w-px h-16 bg-zinc-700" />
+        <div className="w-px h-16 bg-border" />
       </div>
 
       {/* ── Main text — left ──────────────────────────────── */}
@@ -120,33 +94,30 @@ export function HeroSection() {
         <div className="max-w-lg">
 
           {/* Hello label */}
-          <p className="text-indigo-400 text-xs font-semibold uppercase tracking-[0.3em] mb-5">
+          <p className="text-primary text-xs font-semibold uppercase tracking-[0.3em] mb-5">
             Hello, I&apos;m
           </p>
 
           {/* Name */}
-          <h1 className="text-[64px] sm:text-[80px] lg:text-[100px] font-black text-white leading-[0.92] tracking-tight mb-7">
+          <h1 className="text-[64px] sm:text-[80px] lg:text-[100px] font-black text-foreground leading-[0.92] tracking-tight mb-7">
             Felister
             <br />
             Wambui
           </h1>
 
           {/* Role */}
-          <p className="text-slate-400 text-base mb-1">A Passionate</p>
-          <p
-            className="text-xl font-bold text-indigo-400 transition-opacity duration-300 mb-10"
-            style={{ opacity: visible ? 1 : 0 }}
-          >
-            {roles[roleIdx]}
+          <p className="text-xl font-bold text-primary mb-1">Software Engineer</p>
+          <p className="text-muted-foreground text-base mb-10">
+            Building practical web applications and real-world IoT solutions
           </p>
 
           {/* CTA */}
-          <Link
-            href="/projects"
-            className="inline-flex items-center gap-3 px-8 py-3.5 border-2 border-white/20 text-white text-sm font-semibold tracking-wide uppercase hover:bg-white hover:text-zinc-900 hover:border-white transition-all duration-200"
+          <a
+            href="#projects"
+            className="inline-flex items-center gap-3 px-8 py-3.5 border-2 border-foreground/20 text-foreground text-sm font-semibold tracking-wide uppercase hover:bg-foreground hover:text-background hover:border-foreground transition-all duration-200"
           >
             View My Work
-          </Link>
+          </a>
 
         </div>
       </div>
