@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+/* Class-based dark mode for next-themes */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --font-sans: var(--font-raleway), sans-serif;
+
+  /* Slate palette shortcuts */
+  --color-surface: #1e293b;
+  --color-surface-light: #f8fafc;
+
+  /* Accent */
+  --color-accent: #6366f1;
+  --color-accent-dark: #4f46e5;
+}
+
+/* Smooth theme switch — only color properties, not transforms/opacity */
+html {
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
