@@ -1,8 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
+import { Mail } from "lucide-react";
 
 function GithubIcon({ className }: { className?: string }) {
   return (
-    <svg className={className} fill="currentColor" viewBox="0 0 24 24">
+    <svg className={className} fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
       <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
     </svg>
   );
@@ -10,7 +12,7 @@ function GithubIcon({ className }: { className?: string }) {
 
 function LinkedinIcon({ className }: { className?: string }) {
   return (
-    <svg className={className} fill="currentColor" viewBox="0 0 24 24">
+    <svg className={className} fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
       <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
     </svg>
   );
@@ -18,17 +20,29 @@ function LinkedinIcon({ className }: { className?: string }) {
 
 export function HeroSection() {
   return (
-    <section className="dark relative min-h-screen flex items-center overflow-hidden bg-background pt-16">
+    <section className="dark relative h-[100svh] min-h-[600px] bg-background overflow-hidden">
 
-      {/* ── Photo circle ──────────────────────────────────── */}
-      <div className="absolute right-[14%] top-1/2 -translate-y-[48%] pointer-events-none select-none">
+      {/* ── Accent glow — upper-right, behind face ────────── */}
+      <div
+        className="absolute inset-0 z-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 32% 42% at 74% 30%, oklch(0.50 0.287 316 / 0.28) 0%, transparent 70%)",
+        }}
+      />
+
+      {/* ── Portrait — right half, desktop only ───────────── */}
+      <div
+        className="hidden lg:block absolute right-0 top-0 h-full w-[50%] z-20 opacity-0"
+        style={{ animation: "fadeIn 1s ease 0.28s both" }}
+      >
         <div
-          className="relative w-[340px] h-[340px] sm:w-[420px] sm:h-[420px] lg:w-[560px] lg:h-[560px]"
+          className="relative h-full w-full"
           style={{
             maskImage:
-              "radial-gradient(circle, black 40%, transparent 70%)",
+              "linear-gradient(to right, transparent 0%, black 22%, black 100%)",
             WebkitMaskImage:
-              "radial-gradient(circle, black 40%, transparent 70%)",
+              "linear-gradient(to right, transparent 0%, black 22%, black 100%)",
           }}
         >
           <Image
@@ -36,89 +50,139 @@ export function HeroSection() {
             alt="Felister Wambui"
             fill
             priority
-            className="object-cover object-top grayscale hover:grayscale-0 transition-all duration-700"
-            sizes="(max-width: 640px) 340px, (max-width: 1024px) 420px, 560px"
+            className="object-cover object-top"
+            sizes="50vw"
           />
         </div>
       </div>
 
-      {/* ── Decorative crosses ────────────────────────────── */}
-      <span className="absolute top-28 left-[45%] text-muted-foreground text-2xl font-light select-none">
-        ✦
-      </span>
-      <span className="absolute top-24 right-[28%] text-muted-foreground text-xl font-light select-none">
-        +
-      </span>
-      <span className="absolute bottom-28 right-[38%] text-muted-foreground text-2xl font-light select-none">
-        +
-      </span>
-      <span className="absolute bottom-40 left-[38%] text-muted-foreground text-sm select-none">
-        ✦
-      </span>
+      {/* ── Text block — full-width, vertically centered ──── */}
+      <div className="absolute inset-0 z-30 flex items-center pt-16">
+        <div className="w-full px-8 sm:px-12 xl:px-16">
 
-      {/* ── Social links — right edge ─────────────────────── */}
-      <div className="absolute right-4 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-center gap-4 z-20">
-        <div className="w-px h-16 bg-border" />
-        <a
-          href="https://github.com/wambui-pixel"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-muted-foreground hover:text-foreground transition-colors"
-          aria-label="GitHub"
-        >
-          <GithubIcon className="w-4 h-4" />
-        </a>
-        <a
-          href="https://www.linkedin.com/in/wambui-kioko/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-muted-foreground hover:text-foreground transition-colors"
-          aria-label="LinkedIn"
-        >
-          <LinkedinIcon className="w-4 h-4" />
-        </a>
-        <a
-          href="mailto:kiokowambui015@gmail.com"
-          className="text-muted-foreground hover:text-foreground transition-colors"
-          aria-label="Email"
-        >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-          </svg>
-        </a>
-        <div className="w-px h-16 bg-border" />
-      </div>
-
-      {/* ── Main text — left ──────────────────────────────── */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-8 w-full">
-        <div className="max-w-lg">
-
-          {/* Hello label */}
-          <p className="text-primary text-xs font-semibold uppercase tracking-[0.3em] mb-5">
-            Hello, I&apos;m
-          </p>
+          {/* Eyebrow */}
+          <div
+            className="flex items-center gap-3 mb-10 opacity-0"
+            style={{ animation: "fadeIn 0.6s ease 0.1s both" }}
+          >
+            <span className="block w-6 h-px bg-primary flex-none" />
+            <span className="text-[10px] font-bold uppercase tracking-[0.32em] text-muted-foreground">
+              Software Engineer
+            </span>
+          </div>
 
           {/* Name */}
-          <h1 className="text-[64px] sm:text-[80px] lg:text-[100px] font-black text-foreground leading-[0.92] tracking-tight mb-7">
-            Felister
-            <br />
-            Wambui
+          <h1 className="mb-8" aria-label="Felister Wambui">
+            <span
+              className="block font-black uppercase opacity-0"
+              style={{
+                fontSize: "clamp(72px, 12vw, 168px)",
+                lineHeight: 0.87,
+                letterSpacing: "-0.04em",
+                color: "white",
+                animation: "fadeUp 0.8s ease 0.2s both",
+              }}
+            >
+              Felister
+            </span>
+            <span
+              className="block font-black uppercase opacity-0"
+              style={{
+                fontSize: "clamp(72px, 12vw, 168px)",
+                lineHeight: 0.87,
+                letterSpacing: "-0.04em",
+                color: "white",
+                animation: "fadeUp 0.8s ease 0.32s both",
+              }}
+            >
+              Wambui
+            </span>
           </h1>
 
-          {/* Role */}
-          <p className="text-xl font-bold text-primary mb-1">Software Engineer</p>
-          <p className="text-muted-foreground text-base mb-10">
-            Building practical web applications and real-world IoT solutions
+          {/* Thin rule */}
+          <div
+            className="w-14 h-px bg-border mb-7 opacity-0"
+            style={{ animation: "fadeIn 0.5s ease 0.48s both" }}
+          />
+
+          {/* Description */}
+          <p
+            className="text-base sm:text-[17px] text-muted-foreground leading-relaxed font-light max-w-[320px] mb-4 opacity-0"
+            style={{ animation: "fadeUp 0.6s ease 0.54s both" }}
+          >
+            Building practical systems for the real world.
           </p>
 
-          {/* CTA */}
-          <a
-            href="#projects"
-            className="inline-flex items-center gap-3 px-8 py-3.5 border-2 border-foreground/20 text-foreground text-sm font-semibold tracking-wide uppercase hover:bg-foreground hover:text-background hover:border-foreground transition-all duration-200"
+          {/* Specialty line */}
+          <p
+            className="text-[10px] tracking-[0.24em] uppercase text-muted-foreground/50 mb-12 opacity-0"
+            style={{ animation: "fadeUp 0.6s ease 0.62s both" }}
           >
-            View My Work
-          </a>
+            Web&ensp;·&ensp;IoT&ensp;·&ensp;Embedded Systems&ensp;·&ensp;AI
+          </p>
 
+          {/* CTAs */}
+          <div
+            className="flex items-center gap-3 flex-wrap opacity-0"
+            style={{ animation: "fadeUp 0.6s ease 0.72s both" }}
+          >
+            <a
+              href="#projects"
+              className="group inline-flex items-center gap-2.5 px-7 py-3.5 bg-foreground text-background text-sm font-bold rounded-full hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+            >
+              Explore Projects
+              <span className="transition-transform duration-200 group-hover:translate-x-0.5 leading-none">
+                →
+              </span>
+            </a>
+            <Link
+              href="/?cv=1#contact"
+              className="inline-flex items-center gap-2 px-7 py-3.5 border border-border text-muted-foreground text-sm font-semibold rounded-full hover:text-foreground hover:border-muted-foreground/50 transition-all duration-200"
+            >
+              Request CV
+              <span className="text-[11px] leading-none">↓</span>
+            </Link>
+          </div>
+
+        </div>
+      </div>
+
+      {/* ── Bottom strip ─────────────────────────────────── */}
+      <div
+        className="absolute bottom-0 inset-x-0 z-30 border-t border-border opacity-0"
+        style={{ animation: "fadeIn 0.6s ease 0.9s both" }}
+      >
+        <div className="px-8 sm:px-12 h-14 flex items-center justify-between">
+          <div className="flex items-center gap-5">
+            <a
+              href="https://github.com/wambui-pixel"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              className="text-muted-foreground/50 hover:text-foreground transition-colors"
+            >
+              <GithubIcon className="w-[15px] h-[15px]" />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/wambui-kioko/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="text-muted-foreground/50 hover:text-foreground transition-colors"
+            >
+              <LinkedinIcon className="w-[15px] h-[15px]" />
+            </a>
+            <a
+              href="mailto:kiokowambui015@gmail.com"
+              aria-label="Email"
+              className="text-muted-foreground/50 hover:text-foreground transition-colors"
+            >
+              <Mail className="w-[15px] h-[15px]" />
+            </a>
+          </div>
+          <span className="text-[10px] tracking-[0.24em] uppercase text-muted-foreground/40">
+            Nairobi, Kenya
+          </span>
         </div>
       </div>
 

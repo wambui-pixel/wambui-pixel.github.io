@@ -84,7 +84,7 @@ export function Footer() {
           </div>
 
           {/* Contact */}
-          <div id="contact">
+          <div>
             <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">
               Contact
             </p>
@@ -93,7 +93,7 @@ export function Footer() {
               challenges. Feel free to reach out.
             </p>
             <a
-              href="mailto:kiokowambui015@gmail.com"
+              href="#contact"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground text-sm font-semibold transition-colors"
             >
               <Mail className="w-4 h-4" />

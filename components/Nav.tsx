@@ -1,8 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useSyncExternalStore } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { Sun, Moon, Menu, X, ChevronDown } from "lucide-react";
 
@@ -17,21 +16,19 @@ const projectLinks = [
   { label: "Mini Projects", href: "#others" },
 ];
 
+const contactLink = { label: "Contact", href: "#contact" };
+
 export function Nav() {
-  const pathname = usePathname();
   const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(() => () => {}, () => true, () => false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  const isActive = (href: string) => pathname === href;
 
   return (
     <header
@@ -94,11 +91,18 @@ export function Nav() {
                   </div>
                 </div>
               </div>
+
+              {/* Contact link */}
+              <a
+                href={contactLink.href}
+                className="px-3 py-2 rounded-md text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              >
+                {contactLink.label}
+              </a>
             </div>
           </div>
 
-          <div>
-            {/* Theme toggle */}
+          <div className="hidden md:block">
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               className="ml-2 p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
@@ -184,6 +188,14 @@ export function Nav() {
                   {l.label}
                 </a>
               ))}
+
+              <a
+                href={contactLink.href}
+                onClick={() => setMenuOpen(false)}
+                className="px-3 py-2.5 rounded-lg text-sm font-medium text-primary hover:bg-muted transition-colors"
+              >
+                {contactLink.label}
+              </a>
             </div>
           </div>
         )

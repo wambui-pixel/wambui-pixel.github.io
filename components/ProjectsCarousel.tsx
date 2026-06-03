@@ -41,6 +41,33 @@ const projects: Project[] = [
     tags: ["Go", "TypeScript", "MQTT", "AMQP", "CoAP"],
     github: "https://github.com/absmach/fluxmq",
   },
+  {
+    id: 4,
+    title: "Ultraviolet Website",
+    gradient: "from-violet-500 via-fuchsia-500 to-pink-500",
+    description:
+      "Marketing and content hub for Ultraviolet, a confidential computing startup. Built with Astro and Tailwind CSS for blazing-fast static delivery, featuring a reusable component architecture and optimized imagery.",
+    tags: ["Astro", "TypeScript", "Tailwind CSS"],
+    github: "https://github.com/ultravioletrs/website",
+  },
+  {
+    id: 5,
+    title: "Propeller UI",
+    gradient: "from-orange-500 via-amber-400 to-yellow-400",
+    description:
+      "Maintained the product website and UI for Propeller, a WebAssembly workload orchestrator for the Cloud-Edge continuum — enabling portable, sandboxed app deployment from cloud servers to edge microcontrollers.",
+    tags: ["MDX", "TypeScript", "WebAssembly", "Edge Computing"],
+    github: null,
+  },
+  {
+    id: 6,
+    title: "IoT Client SDKs",
+    gradient: "from-teal-500 via-emerald-400 to-green-500",
+    description:
+      "Authored and maintained official client libraries for Magistrala IoT platform in TypeScript and Python, enabling developers to integrate device provisioning, messaging, and data pipelines across language ecosystems.",
+    tags: ["TypeScript", "Python", "npm", "PyPI", "IoT"],
+    github: "https://github.com/absmach/magistrala-sdk-ts",
+  },
 ];
 
 export function ProjectsCarousel() {
@@ -66,7 +93,7 @@ export function ProjectsCarousel() {
               Featured Projects
             </h2>
           </div>
-          <div className="flex gap-2 md:hidden">
+          <div className="flex gap-2">
             <button
               onClick={scrollPrev}
               className="p-2.5 rounded-full border border-border text-muted-foreground hover:border-primary hover:text-primary transition-colors"
