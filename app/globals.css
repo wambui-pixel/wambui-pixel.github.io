@@ -75,8 +75,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 4rem; /* offset for fixed 64px nav */
+  scroll-padding-top: 4rem;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
@@ -130,34 +129,34 @@ html {
 }
 
 .dark {
-  --background: oklch(0.20 0 0);
+  --background: oklch(0.13 0.025 261);
   --foreground: oklch(0.92 0 0);
-  --card: oklch(0.27 0 0);
+  --card: oklch(0.20 0.025 261);
   --card-foreground: oklch(0.92 0 0);
-  --popover: oklch(0.27 0 0);
+  --popover: oklch(0.20 0.025 261);
   --popover-foreground: oklch(0.92 0 0);
   --primary: oklch(0.50 0.287 316);
   --primary-foreground: oklch(1.00 0 0);
-  --secondary: oklch(0.27 0 0);
+  --secondary: oklch(0.20 0.025 261);
   --secondary-foreground: oklch(0.92 0 0);
-  --muted: oklch(0.27 0 0);
+  --muted: oklch(0.20 0.025 261);
   --muted-foreground: oklch(0.72 0 0);
   --accent: oklch(0.52 0.14 280);
   --accent-foreground: oklch(0.20 0.06 280);
   --destructive: oklch(0.64 0.21 25.39);
-  --border: oklch(0.37 0 0);
-  --input: oklch(0.37 0 0);
+  --border: oklch(0.30 0.02 261);
+  --input: oklch(0.30 0.02 261);
   --ring: oklch(0.50 0.287 316);
   --chart-1: oklch(0.71 0.14 254.69);
   --chart-2: oklch(0.62 0.19 259.76);
   --chart-3: oklch(0.55 0.22 262.96);
   --chart-4: oklch(0.49 0.22 264.43);
   --chart-5: oklch(0.42 0.18 265.55);
-  --sidebar: oklch(0.21 0.01 285.93);
+  --sidebar: oklch(0.16 0.025 261);
   --sidebar-foreground: oklch(0.99 0 0);
   --sidebar-primary: oklch(0.49 0.24 264.40);
   --sidebar-primary-foreground: oklch(0.99 0 0);
-  --sidebar-accent: oklch(0.27 0.01 286.10);
+  --sidebar-accent: oklch(0.20 0.025 261);
   --sidebar-accent-foreground: oklch(0.99 0 0);
   --sidebar-border: oklch(1.00 0 0 / 10%);
   --sidebar-ring: oklch(0.55 0.02 285.93);
@@ -188,4 +187,101 @@ html {
   html {
     @apply font-sans;
   }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ── ScrollStack ─────────────────────────────────────────────── */
+.scroll-stack-card {
+  transform-origin: top center;
+  will-change: transform, filter;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.scroll-stack-end {
+  width: 100%;
+  height: 1px;
+}
+
+/* ── Carousel ────────────────────────────────────────────────── */
+.carousel-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 1.5rem;
+  padding: 1rem;
+}
+
+.carousel-track {
+  display: flex;
+}
+
+.carousel-item {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background-color: var(--card);
+  overflow: hidden;
+  cursor: grab;
+  min-height: 260px;
+}
+
+.carousel-item:active {
+  cursor: grabbing;
+}
+
+.carousel-indicators-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.carousel-indicators {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 0 1rem;
+}
+
+.carousel-indicator {
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 150ms;
+  flex-shrink: 0;
+}
+
+.carousel-indicator.active {
+  background-color: var(--primary);
+}
+
+.carousel-indicator.inactive {
+  background-color: var(--border);
 }

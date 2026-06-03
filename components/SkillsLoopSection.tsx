@@ -20,7 +20,7 @@ const logos: LogoItem[] = allSkills.map((skill) => ({
 export function SkillsLoopSection() {
   return (
     <section
-      className="p-5 bg-muted border-y border-border overflow-hidden w-full"
+      className="p-5 bg-background border-y border-border overflow-hidden w-full"
     >
       <LogoLoop
         logos={logos}
