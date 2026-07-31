@@ -4,8 +4,10 @@ import { useState, useEffect, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { Sun, Moon, Menu, X, ChevronDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const aboutLinks = [
+  { label: "Who I Am", href: "#who-i-am" },
   { label: "Education", href: "#education" },
   { label: "Work Experience", href: "#experience" },
   { label: "My Skills", href: "#skills" },
@@ -52,10 +54,14 @@ export function Nav() {
 
               {/* About dropdown */}
               <div className="relative group">
-                <button className="flex items-center gap-1 px-3 py-2 rounded-md text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+                <Button
+                  type="button"
+                  variant="ghost"
+                  className="h-auto gap-1 px-3 py-2 rounded-md text-sm font-medium text-muted-foreground hover:bg-transparent hover:text-primary dark:hover:bg-transparent"
+                >
                   About
                   <ChevronDown className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" />
-                </button>
+                </Button>
                 <div className="absolute top-full left-0 pt-2 hidden group-hover:block">
                   <div className="w-48 rounded-xl bg-card shadow-xl border border-border overflow-hidden py-1">
                     {aboutLinks.map((l) => (
@@ -73,10 +79,14 @@ export function Nav() {
 
               {/* Projects dropdown */}
               <div className="relative group">
-                <button className="flex items-center gap-1 px-3 py-2 rounded-md text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+                <Button
+                  type="button"
+                  variant="ghost"
+                  className="h-auto gap-1 px-3 py-2 rounded-md text-sm font-medium text-muted-foreground hover:bg-transparent hover:text-primary dark:hover:bg-transparent"
+                >
                   Projects
                   <ChevronDown className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" />
-                </button>
+                </Button>
                 <div className="absolute top-full left-0 pt-2 hidden group-hover:block">
                   <div className="w-44 rounded-xl bg-card shadow-xl border border-border overflow-hidden py-1">
                     {projectLinks.map((l) => (
@@ -103,9 +113,12 @@ export function Nav() {
           </div>
 
           <div className="hidden md:block">
-            <button
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon"
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="ml-2 p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+              className="size-auto ml-2 p-2 rounded-full"
               aria-label="Toggle theme"
             >
               {mounted ? (
@@ -117,15 +130,18 @@ export function Nav() {
               ) : (
                 <div className="w-4.5 h-4.5" />
               )}
-            </button>
+            </Button>
           </div>
         </div>
 
         {/* Mobile controls */}
         <div className="flex md:hidden items-center gap-2">
-          <button
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="p-2 rounded-full text-muted-foreground hover:bg-muted transition-colors"
+            className="size-auto p-2 rounded-full"
             aria-label="Toggle theme"
           >
             {mounted ? (
@@ -137,14 +153,17 @@ export function Nav() {
             ) : (
               <div className="w-4.5 h-4.5" />
             )}
-          </button>
-          <button
+          </Button>
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon"
             onClick={() => setMenuOpen((o) => !o)}
-            className="p-2 rounded-full text-muted-foreground hover:bg-muted transition-colors"
+            className="size-auto p-2 rounded-full"
             aria-label="Toggle menu"
           >
             {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
+          </Button>
         </div>
       </nav>
 

@@ -17,6 +17,7 @@ function LinkedinIcon({ className }: { className?: string }) {
 }
 
 const navLinks = [
+  { label: "Who I Am", href: "#who-i-am" },
   { label: "Education", href: "#education" },
   { label: "Experience", href: "#experience" },
   { label: "Skills", href: "#skills" },

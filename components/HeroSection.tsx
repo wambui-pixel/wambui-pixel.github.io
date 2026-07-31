@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Mail } from "lucide-react";
+import { HeroSceneClient } from "@/components/hero/HeroSceneClient";
 
 function GithubIcon({ className }: { className?: string }) {
   return (
@@ -20,7 +20,7 @@ function LinkedinIcon({ className }: { className?: string }) {
 
 export function HeroSection() {
   return (
-    <section className="dark relative h-[100svh] min-h-[600px] bg-background overflow-hidden">
+    <section className="relative h-[100svh] min-h-[600px] bg-background overflow-hidden">
 
       {/* ── Accent glow — upper-right, behind face ────────── */}
       <div
@@ -31,30 +31,8 @@ export function HeroSection() {
         }}
       />
 
-      {/* ── Portrait — right half, desktop only ───────────── */}
-      <div
-        className="hidden lg:block absolute right-0 top-0 h-full w-[50%] z-20 opacity-0"
-        style={{ animation: "fadeIn 1s ease 0.28s both" }}
-      >
-        <div
-          className="relative h-full w-full"
-          style={{
-            maskImage:
-              "linear-gradient(to right, transparent 0%, black 22%, black 100%)",
-            WebkitMaskImage:
-              "linear-gradient(to right, transparent 0%, black 22%, black 100%)",
-          }}
-        >
-          <Image
-            src="/images/mine.jpg"
-            alt="Felister Wambui"
-            fill
-            priority
-            className="object-cover object-top"
-            sizes="50vw"
-          />
-        </div>
-      </div>
+      {/* ── Engineering ecosystem scene ────────────────────── */}
+      <HeroSceneClient />
 
       {/* ── Text block — full-width, vertically centered ──── */}
       <div className="absolute inset-0 z-30 flex items-center pt-16">
@@ -66,36 +44,39 @@ export function HeroSection() {
             style={{ animation: "fadeIn 0.6s ease 0.1s both" }}
           >
             <span className="block w-6 h-px bg-primary flex-none" />
-            <span className="text-[10px] font-bold uppercase tracking-[0.32em] text-muted-foreground">
-              Software Engineer
+            <span>
+              <span className="text-xs font-bold uppercase tracking-[0.28em] text-foreground">
+                Felister Wambui
+              </span>
+              <span className="text-[10px] font-bold uppercase tracking-[0.32em] text-muted-foreground">
+                {" "}· Software Engineer
+              </span>
             </span>
           </div>
 
-          {/* Name */}
-          <h1 className="mb-8" aria-label="Felister Wambui">
+          {/* Headline */}
+          <h1 className="mb-8" aria-label="Software Engineering Beyond Interfaces.">
             <span
-              className="block font-black uppercase opacity-0"
+              className="block font-black text-foreground opacity-0"
               style={{
-                fontSize: "clamp(72px, 12vw, 168px)",
-                lineHeight: 0.87,
-                letterSpacing: "-0.04em",
-                color: "white",
+                fontSize: "clamp(40px, 6.4vw, 92px)",
+                lineHeight: 1.02,
+                letterSpacing: "-0.03em",
                 animation: "fadeUp 0.8s ease 0.2s both",
               }}
             >
-              Felister
+              Software Engineering
             </span>
             <span
-              className="block font-black uppercase opacity-0"
+              className="block font-black text-foreground opacity-0"
               style={{
-                fontSize: "clamp(72px, 12vw, 168px)",
-                lineHeight: 0.87,
-                letterSpacing: "-0.04em",
-                color: "white",
+                fontSize: "clamp(40px, 6.4vw, 92px)",
+                lineHeight: 1.02,
+                letterSpacing: "-0.03em",
                 animation: "fadeUp 0.8s ease 0.32s both",
               }}
             >
-              Wambui
+              Beyond Interfaces.
             </span>
           </h1>
 
@@ -107,10 +88,12 @@ export function HeroSection() {
 
           {/* Description */}
           <p
-            className="text-base sm:text-[17px] text-muted-foreground leading-relaxed font-light max-w-[320px] mb-4 opacity-0"
+            className="text-base sm:text-[17px] text-muted-foreground leading-relaxed font-light max-w-[420px] mb-4 opacity-0"
             style={{ animation: "fadeUp 0.6s ease 0.54s both" }}
           >
-            Building practical systems for the real world.
+            I design and build intelligent software products that connect people,
+            devices, and data, turning complex systems into intuitive digital
+            experiences.
           </p>
 
           {/* Specialty line */}
@@ -130,7 +113,7 @@ export function HeroSection() {
               href="#projects"
               className="group inline-flex items-center gap-2.5 px-7 py-3.5 bg-foreground text-background text-sm font-bold rounded-full hover:bg-primary hover:text-primary-foreground transition-all duration-300"
             >
-              Explore Projects
+              Explore My Systems
               <span className="transition-transform duration-200 group-hover:translate-x-0.5 leading-none">
                 →
               </span>

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Mail, Send } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 function GithubIcon({ className }: { className?: string }) {
   return (
@@ -105,7 +106,7 @@ export function ContactSection() {
 
         <div className="grid lg:grid-cols-[1fr_340px] gap-6 items-start">
           {/* ── Left: form (dark card) ───────────────────────── */}
-          <div className="dark bg-background rounded-2xl p-8 border border-border">
+          <div className="bg-background rounded-2xl p-8 border border-border">
             <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">
               Send a message
             </p>
@@ -122,12 +123,14 @@ export function ContactSection() {
                 <p className="text-sm text-muted-foreground">
                   {"Check your inbox — I've sent you a confirmation."}
                 </p>
-                <button
+                <Button
+                  type="button"
+                  variant="link"
                   onClick={() => setStatus("idle")}
-                  className="mt-4 text-sm text-primary hover:underline"
+                  className="h-auto p-0 mt-4 text-sm"
                 >
                   Send another
-                </button>
+                </Button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-5">
@@ -196,15 +199,15 @@ export function ContactSection() {
                   <p className="text-sm text-destructive">{errorMsg}</p>
                 )}
 
-                <button
+                <Button
                   type="submit"
-                  disabled={true}
-                  className="w-full flex items-center justify-center gap-2 py-3.5 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-sm transition disabled:opacity-60"
+                  disabled={status === "sending"}
+                  className="h-auto w-full gap-2 py-3.5 rounded-full hover:bg-primary/90 font-semibold text-sm disabled:opacity-60"
                 >
                   {status === "sending" ? "Sending…" : (
                     <>Send message <Send className="w-4 h-4" /></>
                   )}
-                </button>
+                </Button>
               </form>
             )}
           </div>
