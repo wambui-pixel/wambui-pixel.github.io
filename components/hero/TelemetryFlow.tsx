@@ -1,9 +1,10 @@
 "use client";
 
 import { useMemo, useRef, useState } from "react";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import { Html, Line } from "@react-three/drei";
 import * as THREE from "three";
+import { CAMERA_FOV, REST_POSITION } from "@/components/hero/CameraRig";
 
 const SKILLS = ["React", "Next.js", "TypeScript", "JavaScript", "HTML", "CSS"];
 
@@ -29,25 +30,48 @@ const PALETTE = {
   },
 };
 
+const RADIUS_X = 0.9;
+const RADIUS_Y = 1.3;
+// Fraction of the viewport the ring may occupy, and where its center sits
+// (0.76 = 76% across from the left edge), so it stays clear of the
+// headline column at any aspect ratio, including Windows display scaling
+// (125%/150%), which produces short, wide CSS viewports.
+const MAX_WIDTH_FRACTION = 0.3;
+const MAX_HEIGHT_FRACTION = 0.62;
+const CENTER_X_FRACTION = 0.76;
+const MAX_SCALE = 1.1;
+
 // A closed ring rather than a line: nodes sit at even angles around a
-// shared center, entirely in the right-hand "lane" of the viewport so
-// nothing falls behind the headline text column on the left. The pulse
-// travels continuously around the loop with no reset/snap, reading as a
-// system in constant circulation (an event loop / ring topology) rather
-// than a single packet retracing a one-way pipeline.
+// shared center. The pulse travels continuously around the loop with no
+// reset/snap, reading as a system in constant circulation (an event loop /
+// ring topology) rather than a single packet retracing a one-way pipeline.
 function buildCurve() {
-  const centerX = 2.5;
-  const centerY = 0;
-  const radiusX = 0.9;
-  const radiusY = 1.3;
   const points = SKILLS.map((_, i) => {
     const angle = (i / SKILLS.length) * Math.PI * 2;
-    const x = centerX + Math.cos(angle) * radiusX;
-    const y = centerY + Math.sin(angle) * radiusY;
+    const x = Math.cos(angle) * RADIUS_X;
+    const y = Math.sin(angle) * RADIUS_Y;
     const z = Math.sin(angle * 1.4) * 0.7;
     return new THREE.Vector3(x, y, z);
   });
   return new THREE.CatmullRomCurve3(points, true, "catmullrom", 0.4);
+}
+
+// Places the ring in the right-hand lane of the viewport, measured from the
+// visible area at the camera's rest distance rather than fixed world units,
+// so the ring never drifts into the headline on wide or short screens.
+function useRingLayout() {
+  const { width, height } = useThree((state) => state.size);
+  return useMemo(() => {
+    const viewHeight = 2 * REST_POSITION.z * Math.tan(THREE.MathUtils.degToRad(CAMERA_FOV / 2));
+    const viewWidth = viewHeight * (width / Math.max(height, 1));
+    const scale = Math.min(
+      MAX_SCALE,
+      (viewWidth * MAX_WIDTH_FRACTION) / (RADIUS_X * 2),
+      (viewHeight * MAX_HEIGHT_FRACTION) / (RADIUS_Y * 2)
+    );
+    const x = viewWidth * (CENTER_X_FRACTION - 0.5);
+    return { position: [x, 0, 0] as const, scale };
+  }, [width, height]);
 }
 
 export function TelemetryFlow({
@@ -66,6 +90,7 @@ export function TelemetryFlow({
     [curve, N]
   );
 
+  const layout = useRingLayout();
   const pulseRef = useRef<THREE.Mesh>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const lastHighlightRef = useRef(0);
@@ -101,7 +126,7 @@ export function TelemetryFlow({
   });
 
   return (
-    <group>
+    <group position={layout.position} scale={layout.scale}>
       <Line points={linePoints} color={colors.line} transparent opacity={colors.lineOpacity} lineWidth={1} />
 
       {nodePositions.map((pos, i) => (

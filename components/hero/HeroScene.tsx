@@ -3,7 +3,7 @@
 import { useTheme } from "next-themes";
 import { Canvas } from "@react-three/fiber";
 import { Sparkles } from "@react-three/drei";
-import { CameraRig } from "@/components/hero/CameraRig";
+import { CAMERA_FOV, CameraRig, REST_POSITION } from "@/components/hero/CameraRig";
 import { TelemetryFlow } from "@/components/hero/TelemetryFlow";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
@@ -16,7 +16,7 @@ export default function HeroScene() {
     <Canvas
       dpr={[1, 1.5]}
       gl={{ alpha: true, antialias: true }}
-      camera={{ fov: 45, position: [0, 0, 6] }}
+      camera={{ fov: CAMERA_FOV, position: REST_POSITION.toArray() }}
     >
       <ambientLight intensity={isDark ? 0.4 : 0.8} />
       <pointLight position={[3, 3, 4]} intensity={0.6} color="#a855f7" />

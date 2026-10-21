@@ -4,6 +4,8 @@
 
 /* Class-based dark mode for next-themes */
 @custom-variant dark (&:where(.dark, .dark *));
+/* Short viewports, e.g. a 1080p screen at Windows 125%/150% scaling. */
+@custom-variant short (@media (max-height: 760px));
 
 @theme inline {
   --font-sans: DM Sans, sans-serif;
@@ -186,6 +188,17 @@ html {
   }
   html {
     @apply font-sans;
+  }
+}
+
+/* Hero headline: bounded by width and height. From lg up the ring takes the
+   right-hand lane, so the width bound tightens to keep line one clear of it. */
+.hero-headline {
+  font-size: clamp(40px, min(6.4vw, 10.5vh), 92px);
+}
+@media (min-width: 1024px) {
+  .hero-headline {
+    font-size: clamp(40px, min(5.2vw, 10.5vh), 92px);
   }
 }
 

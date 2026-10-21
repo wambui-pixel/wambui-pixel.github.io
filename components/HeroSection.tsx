@@ -20,7 +20,7 @@ function LinkedinIcon({ className }: { className?: string }) {
 
 export function HeroSection() {
   return (
-    <section className="relative h-[100svh] min-h-[600px] bg-background overflow-hidden">
+    <section className="relative min-h-[100svh] flex flex-col bg-background overflow-hidden">
 
       {/* ── Accent glow — upper-right, behind face ────────── */}
       <div
@@ -34,32 +34,32 @@ export function HeroSection() {
       {/* ── Engineering ecosystem scene ────────────────────── */}
       <HeroSceneClient />
 
-      {/* ── Text block — full-width, vertically centered ──── */}
-      <div className="absolute inset-0 z-30 flex items-center pt-16">
+      {/* ── Text block — in normal flow so the section grows rather than
+           clipping when the viewport is short (e.g. Windows 125%/150%) ── */}
+      <div className="relative z-30 flex-1 flex items-center pt-24 pb-24 short:pt-20 short:pb-20">
         <div className="w-full px-8 sm:px-12 xl:px-16">
 
           {/* Eyebrow */}
           <div
-            className="flex items-center gap-3 mb-10 opacity-0"
+            className="flex items-center gap-3 mb-10 short:mb-6 opacity-0"
             style={{ animation: "fadeIn 0.6s ease 0.1s both" }}
           >
             <span className="block w-6 h-px bg-primary flex-none" />
-            <span>
+            <span className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
               <span className="text-xs font-bold uppercase tracking-[0.28em] text-foreground">
                 Felister Wambui
               </span>
               <span className="text-[10px] font-bold uppercase tracking-[0.32em] text-muted-foreground">
-                {" "}· Software Engineer
+                <span className="hidden sm:inline">· </span>Software Engineer
               </span>
             </span>
           </div>
 
           {/* Headline */}
-          <h1 className="mb-8" aria-label="Software Engineering Beyond Interfaces.">
+          <h1 className="mb-8 short:mb-5" aria-label="Software Engineering Beyond Interfaces.">
             <span
-              className="block font-black text-foreground opacity-0"
+              className="hero-headline block font-black text-foreground opacity-0"
               style={{
-                fontSize: "clamp(40px, 6.4vw, 92px)",
                 lineHeight: 1.02,
                 letterSpacing: "-0.03em",
                 animation: "fadeUp 0.8s ease 0.2s both",
@@ -68,9 +68,8 @@ export function HeroSection() {
               Software Engineering
             </span>
             <span
-              className="block font-black text-foreground opacity-0"
+              className="hero-headline block font-black text-foreground opacity-0"
               style={{
-                fontSize: "clamp(40px, 6.4vw, 92px)",
                 lineHeight: 1.02,
                 letterSpacing: "-0.03em",
                 animation: "fadeUp 0.8s ease 0.32s both",
@@ -82,7 +81,7 @@ export function HeroSection() {
 
           {/* Thin rule */}
           <div
-            className="w-14 h-px bg-border mb-7 opacity-0"
+            className="w-14 h-px bg-border mb-7 short:mb-5 opacity-0"
             style={{ animation: "fadeIn 0.5s ease 0.48s both" }}
           />
 
@@ -98,7 +97,7 @@ export function HeroSection() {
 
           {/* Specialty line */}
           <p
-            className="text-[10px] tracking-[0.24em] uppercase text-muted-foreground/50 mb-12 opacity-0"
+            className="text-[10px] tracking-[0.24em] uppercase text-muted-foreground/50 mb-12 short:mb-7 opacity-0"
             style={{ animation: "fadeUp 0.6s ease 0.62s both" }}
           >
             Web&ensp;·&ensp;IoT&ensp;·&ensp;Embedded Systems&ensp;·&ensp;AI

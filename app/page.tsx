@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { HeroSection } from "@/components/HeroSection";
-import { SkillsLoopSection } from "@/components/SkillsLoopSection";
-import { ProjectsJourney } from "@/components/projects/ProjectsJourney";
+import { ProjectsShowcase } from "@/components/projects/ProjectsShowcase";
 import { ContactSection } from "@/components/ContactSection";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { ExperienceTimeline, type Experience } from "@/components/ExperienceTimeline";
@@ -18,7 +17,6 @@ export const metadata: Metadata = {
   description:
     "Portfolio of Felister Wambui, Mechatronic Engineer, Programmer, CAD Designer, and Web Developer.",
 };
-
 
 const education = [
   {
@@ -68,10 +66,8 @@ export default function Home() {
     <main>
       <HeroSection />
 
-      <SkillsLoopSection />
-
-      {/* ── Projects journey ─────────────────────────────── */}
-      <ProjectsJourney />
+      {/* ── Projects ─────────────────────────────────────── */}
+      <ProjectsShowcase />
 
       {/* ── Experience ───────────────────────────────────── */}
       <section id="experience" className="py-20 bg-background">

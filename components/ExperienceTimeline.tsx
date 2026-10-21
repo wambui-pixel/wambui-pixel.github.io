@@ -14,7 +14,7 @@ export interface Experience {
 
 export function ExperienceTimeline({ experiences }: { experiences: Experience[] }) {
   return (
-    <div className="relative">
+    <div className="relative overflow-x-clip">
       <div className="absolute left-5 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-px bg-border" />
       <div className="space-y-10 md:space-y-14">
         {experiences.map((exp, i) => {
