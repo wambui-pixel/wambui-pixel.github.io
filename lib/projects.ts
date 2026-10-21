@@ -1,7 +1,6 @@
 export interface Project {
   slug: string;
   title: string;
-  description: string;
   problem: string;
   built: string;
   solution: string;
@@ -15,8 +14,6 @@ export const PROJECTS: Project[] = [
   {
     slug: "fluxmq-observability-dashboard",
     title: "FluxMQ Observability Dashboard",
-    description:
-      "Real-time visibility into broker activity across MQTT, AMQP, and CoAP, replacing raw log digging with live throughput, connection state, and protocol health at a glance.",
     problem:
       "The FluxMQ team had no visibility into broker activity in production. Diagnosing issues meant digging through raw logs, with no way to monitor message throughput, connection state, or protocol health at a glance.",
     built:
@@ -32,8 +29,6 @@ export const PROJECTS: Project[] = [
   {
     slug: "magistrala-iot-platform",
     title: "Magistrala IoT Platform",
-    description:
-      "Browser-based interface for managing IoT systems: provision devices, configure real-time rules, monitor alarms, and build dashboards without writing code.",
     problem:
       "Provisioning devices, configuring rules, and monitoring alarms across an IoT fleet required writing code against the platform's APIs directly, putting basic fleet management out of reach for non-developers.",
     built:
@@ -49,8 +44,6 @@ export const PROJECTS: Project[] = [
   {
     slug: "magistrala-website",
     title: "Magistrala Website",
-    description:
-      "Documentation and marketing website for Magistrala, an enterprise-grade open-source IoT platform powering smart energy, water metering, and agriculture solutions.",
     problem:
       "An enterprise-grade open-source IoT platform had no dedicated way to communicate its capabilities to prospective developers and buyers, or to host its documentation.",
     built: "A documentation and marketing site built with Next.js and MDX.",
@@ -65,8 +58,6 @@ export const PROJECTS: Project[] = [
   {
     slug: "ultraviolet-website",
     title: "Ultraviolet Website",
-    description:
-      "Marketing and content hub for Ultraviolet, a confidential computing startup, built with Astro and Tailwind CSS for blazing-fast static delivery.",
     problem:
       "A confidential computing startup needed a fast, credible marketing presence to explain its product to a technical audience without a slow, JavaScript-heavy site getting in the way.",
     built: "A marketing and content hub built with Astro and Tailwind CSS.",
@@ -81,8 +72,6 @@ export const PROJECTS: Project[] = [
   {
     slug: "propeller-ui",
     title: "Propeller UI",
-    description:
-      "Product website and UI for Propeller, a WebAssembly workload orchestrator for the Cloud-Edge continuum.",
     problem:
       "Propeller's WebAssembly workload orchestration for the Cloud-Edge continuum had no product site or UI to make the concept concrete for prospective users.",
     built: "The product website and UI for Propeller.",
@@ -97,8 +86,6 @@ export const PROJECTS: Project[] = [
   {
     slug: "iot-client-sdks",
     title: "IoT Client SDKs",
-    description:
-      "Official client libraries for Magistrala, authored and maintained in TypeScript and Python, published to npm and PyPI.",
     problem:
       "Developers integrating with Magistrala had no official, maintained client libraries, leaving them to hand-roll API calls in TypeScript and Python projects.",
     built:

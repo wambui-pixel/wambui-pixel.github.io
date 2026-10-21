@@ -4,7 +4,8 @@ import { useRef } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 
-const REST_POSITION = new THREE.Vector3(0, 0, 6);
+export const CAMERA_FOV = 45;
+export const REST_POSITION = new THREE.Vector3(0, 0, 6);
 const START_POSITION = new THREE.Vector3(0, 1.2, 11);
 const FLY_IN_SECONDS = 1.8;
 const PARALLAX_STRENGTH = 0.6;
